@@ -3,7 +3,7 @@
   <title>{{title}}</title>
 </head>
 <body>
-<div>
+<div >
   <div>
     <h2>Raad het nummer !</h2>
       
@@ -15,7 +15,7 @@
       
      <div>
        <label>Jou gok: </label>
-       <input [disabled]="spelGewonnen||spelVerloren" type="number" [value]="gok" (input)="gok = $event.target.value" />
+       <input [(ngModel)]="gok" [disabled]="spelGewonnen||spelVerloren" type="number"/>
        <button mat-button="primary" (click)="controleGok()">Controler</button>
         
        <button mat-button="warn" (click)="restartSpel()">Nieuw spel</button>
