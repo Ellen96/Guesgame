@@ -28,6 +28,7 @@
      </div>
   </div>
     <div>
+      
        <p *ngIf="afwijking<0" >Je gokte te hoog.</p>
        <p *ngIf="afwijking>0" >Je gokte te laag.</p>
        <p *ngIf="afwijking===0" >Je hebt het spel gewonnen!</p>
@@ -41,9 +42,10 @@
           class="afteller"
           color="warn"
           mode="determinate"
-          value="waarde">
+          value="{{waarde}}">
       </mat-progress-bar>
     </p>
+    <!-- <p>{{secC2}}</p> -->
 </div>
 </div>
 

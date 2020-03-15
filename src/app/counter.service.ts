@@ -11,9 +11,15 @@ export class CounterService {
   secS=this.secSubject.asObservable();
   minSubject: Subject<number> = new Subject<number>();
   minS=this.minSubject.asObservable();
-  
-  constructor(){setInterval(()=>{if (this.sec - 1 == -1) {
+  afteller;
+  restart(){
+    this.min=1;
+    this.sec=0;
+    }
     
+  constructor(){
+    this.afteller = setInterval(()=>{
+  if (this.sec - 1 == -1) {  
     this.min -= 1;
     this.minSubject.next(this.min);
     this.sec = 59;
@@ -23,9 +29,12 @@ export class CounterService {
   {this.sec -= 1;
     this.secSubject.next(this.sec);
   }
-  if (this.min === 0 && this.sec === 0) 
-  {clearInterval(this.min&&this.sec);
+  if(this.min === 0 && this.sec===0) 
+  { clearInterval(this.afteller);
     this.secSubject.next(this.sec);
     this.minSubject.next(this.min);
-}},1000);}
+}},1000);
+  
+}
+
 }

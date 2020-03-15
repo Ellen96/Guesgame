@@ -19,15 +19,16 @@ export class AppComponent {
   spelGewonnen:boolean;
   spelVerloren:boolean;
   waarde:number;
+  vari:CounterService;
+  resetCount(){};
+   
 
   constructor( CounterService:CounterService) {
     CounterService.secS.subscribe((secS)=>this.secC=secS);
     CounterService.minS.subscribe((minS)=>this.minC=minS);
-    setInterval(()=>{
-    if(this.secC===0&&this.minC===0)
-    {this.spelVerloren=true;}}
-    ,1000);
-    this.restartSpel();
+    this.vari=CounterService;
+    this.restartSpel()
+    
   }
   restartSpel() {
     this.aantalGokken = 0;
@@ -36,7 +37,15 @@ export class AppComponent {
     this.afwijking = null;
     this.spelGewonnen = false;
     this.spelVerloren = false; 
-    this.waarde=100;   
+    this.waarde=100;
+    this.vari.restart();
+    setInterval(()=>{      
+      if(this.secC===0&&this.minC===0)
+      {this.spelVerloren=true;
+      }
+      else{this.waarde-=(1/3);}}
+      ,1000); 
+             
   }
   controleGok() {
     this.afwijking = this.teGokkenGetal - this.gok;
@@ -47,6 +56,5 @@ export class AppComponent {
     if (this.aantalGokken==10) {
       this.spelVerloren=true;
     }
-  }
-    
+  }  
 }
