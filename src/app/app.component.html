@@ -16,7 +16,7 @@
      <div>
        <label>Jou gok: </label>
        <input [(ngModel)]="gok" [disabled]="spelGewonnen||spelVerloren" type="number"/>
-       <button mat-button="primary" (click)="controleGok()">Controler</button>
+       <button mat-raised-button color="warn" (click)="controleGok()">Controler</button>
         
        <button mat-button="warn" (click)="restartSpel()">Nieuw spel</button>
       <p>gok : {{gok}}</p>
