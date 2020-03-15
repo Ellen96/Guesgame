@@ -13,7 +13,7 @@ export class CounterService {
   minS=this.minSubject.asObservable();
   afteller;
   restart(){
-    this.min=1;
+    this.min=5;
     this.sec=0;
     }
     
