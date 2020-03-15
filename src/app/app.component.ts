@@ -18,11 +18,15 @@ export class AppComponent {
   gok: number;
   spelGewonnen:boolean;
   spelVerloren:boolean;
+  waarde:number;
 
   constructor( CounterService:CounterService) {
     CounterService.secS.subscribe((secS)=>this.secC=secS);
     CounterService.minS.subscribe((minS)=>this.minC=minS);
-
+    setInterval(()=>{
+    if(this.secC===0&&this.minC===0)
+    {this.spelVerloren=true;}}
+    ,1000);
     this.restartSpel();
   }
   restartSpel() {
@@ -31,7 +35,8 @@ export class AppComponent {
     this.gok = null;
     this.afwijking = null;
     this.spelGewonnen = false;
-    this.spelVerloren = false;
+    this.spelVerloren = false; 
+    this.waarde=100;   
   }
   controleGok() {
     this.afwijking = this.teGokkenGetal - this.gok;

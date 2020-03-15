@@ -24,7 +24,7 @@
      </div>
      <div fxFlex="50" fxFlex.lt-md="100" fxLayout="column">
       <p>gok : {{gok}}</p>
-      <p>Te gokken : {{teGokkenGetal}}</p>
+      <div [hidden]="!(spelGewonnen||spelVerloren)">Te gokken : {{teGokkenGetal}}</div>
      </div>
   </div>
     <div>
@@ -36,6 +36,14 @@
       <span>{{aantalGokken}}</span>
     </p>
     <p> Je hebt nog <time>{{minC}}</time> minuten en <time>{{secC}}</time> seconden.</p>
+    <p>
+      <mat-progress-bar
+          class="afteller"
+          color="warn"
+          mode="determinate"
+          value="waarde">
+      </mat-progress-bar>
+    </p>
 </div>
 </div>
 
