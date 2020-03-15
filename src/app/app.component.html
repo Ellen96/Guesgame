@@ -3,25 +3,30 @@
   <title>{{title}}</title>
 </head>
 <body>
-<div >
+<div flxFlex fxLayout="column" fxLayoutGap="50px" style="height:100vh">
   <div>
     <h2>Raad het nummer !</h2>
       
-        <div>
-            <p>Raad het computer gegenereerd nummer tussen 1 and 100.
-              Je hebt 10 gokken en 5 minuten om dit te doen.
-            </p>
-         </div>
-      
-     <div>
-       <label>Jou gok: </label>
+      <div>
+          <p>Raad het computer gegenereerd nummer tussen 1 and 100.
+          Je hebt 10 gokken en 5 minuten om dit te doen.
+          </p>
+      </div>
+  <div fxLayout="row wrap">   
+     <div fxFlex="50" fxFlex.lt-md="100" fxLayout="column">
+       <label>Jou gok:
        <input [(ngModel)]="gok" [disabled]="spelGewonnen||spelVerloren" type="number"/>
-       <button mat-raised-button color="warn" (click)="controleGok()">Controler</button>
-        
-       <button mat-button="warn" (click)="restartSpel()">Nieuw spel</button>
+       </label>
+       <div flxFlex fxLayout="column1" fxLayoutGap="10px" style="height:10vh">
+       <button fxFlex="50" fxFlex.lt-md="100" fxLayout="column1" mat-raised-button color="warn" (click)="controleGok()">Controler</button>
+       <button fxFlex="50" fxFlex.lt-md="100" fxLayout="column1" mat-stroked-button color="primary" (click)="restartSpel()">Nieuw spel</button>
+      </div>
+     </div>
+     <div fxFlex="50" fxFlex.lt-md="100" fxLayout="column">
       <p>gok : {{gok}}</p>
       <p>Te gokken : {{teGokkenGetal}}</p>
      </div>
+  </div>
     <div>
        <p *ngIf="afwijking<0" >Je gokte te hoog.</p>
        <p *ngIf="afwijking>0" >Je gokte te laag.</p>
@@ -30,7 +35,7 @@
     <p>Aantal gokken :
       <span>{{aantalGokken}}</span>
     </p>
-    <p> Je hebt nog <time>{{afteller.min}}</time> minuten en <time>{{afteller.sec}}</time> seconden.</p>
+    <p> Je hebt nog <time>{{minC}}</time> minuten en <time>{{secC}}</time> seconden.</p>
 </div>
 </div>
 

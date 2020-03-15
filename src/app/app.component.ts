@@ -1,22 +1,28 @@
 import { Component } from '@angular/core';
-import { Button } from 'protractor';
+import { CounterService} from './counter.service'
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
+
 export class AppComponent {
   title = 'Guesgame';
-  afteller: { min: number, sec: number };
+  minC: number;
+  secC: number ;
   afwijking: number;
   aantalGokken: number;
   teGokkenGetal: number;
   gok: number;
   spelGewonnen:boolean;
   spelVerloren:boolean;
-  
-  constructor() {
+
+  constructor( CounterService:CounterService) {
+    CounterService.secS.subscribe((secS)=>this.secC=secS);
+    CounterService.minS.subscribe((minS)=>this.minC=minS);
+
     this.restartSpel();
   }
   restartSpel() {
@@ -26,8 +32,6 @@ export class AppComponent {
     this.afwijking = null;
     this.spelGewonnen = false;
     this.spelVerloren = false;
-    this.afteller;
-    this.startTimer();
   }
   controleGok() {
     this.afwijking = this.teGokkenGetal - this.gok;
@@ -39,19 +43,5 @@ export class AppComponent {
       this.spelVerloren=true;
     }
   }
-  startTimer() {
-    this.afteller = { min: 5, sec: 0 }
-    let intervalId = setInterval(() => {
-      if (this.afteller.sec - 1 == -1) {
-        this.afteller.min -= 1;
-        this.afteller.sec = 59
-      } 
-      else this.afteller.sec -= 1
-      if (this.afteller.min === 0 && this.afteller.sec == 0) 
-      {clearInterval(intervalId)
-      this.spelVerloren=true;
-      }
-    }, 1000)
-  }
-  
+    
 }
