@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class CounterService {
-  private min = 5;
+  private min = 1;
   private sec = 0;
   secSubject: Subject<number> = new Subject<number>();
   secS=this.secSubject.asObservable();
@@ -13,7 +14,7 @@ export class CounterService {
   minS=this.minSubject.asObservable();
   afteller;
   restart(){
-    this.min=5;
+    this.min=1;
     this.sec=0;
     }
     
@@ -26,13 +27,15 @@ export class CounterService {
     this.secSubject.next(this.sec);
   } 
   else 
-  {this.sec -= 1;
+  {
+    this.sec -= 1;
     this.secSubject.next(this.sec);
   }
   if(this.min === 0 && this.sec===0) 
   { clearInterval(this.afteller);
     this.secSubject.next(this.sec);
     this.minSubject.next(this.min);
+    this.restart();
 }},1000);
   
 }
